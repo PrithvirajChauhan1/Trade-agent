@@ -1,0 +1,23 @@
+{
+  "sideways": {
+    "n": 3,
+    "win_rate_pct": 100.0,
+    "expectancy_pct": 11.95,
+    "p_vs_breakeven": 0.0503,
+    "status": "INSUFFICIENT_SAMPLE"
+  },
+  "strong_bull": {
+    "n": 16,
+    "win_rate_pct": 81.2,
+    "expectancy_pct": 8.388,
+    "p_vs_breakeven": 0.0004,
+    "status": "INSUFFICIENT_SAMPLE"
+  },
+  "weak_bull": {
+    "n": 21,
+    "win_rate_pct": 47.6,
+    "expectancy_pct": 1.199,
+    "p_vs_breakeven": 0.2126,
+    "status": "DISABLED"
+  }
+}
