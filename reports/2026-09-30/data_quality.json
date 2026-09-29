@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "issues": [],
+  "info": {
+    "sessions": 260,
+    "expected_bars_per_session": 75,
+    "short_sessions": {},
+    "not_verifiable": [
+      "corporate actions/splits/dividends (use adjusted vendor data)",
+      "exchange holiday calendar"
+    ]
+  }
+}

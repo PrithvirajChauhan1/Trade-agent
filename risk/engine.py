@@ -87,5 +87,8 @@ class RiskEngine:
 
     def reset_day(self):
         self.daily_pnl = 0.0
-        # NOTE: consecutive_losses intentionally NOT reset daily — a losing
-        # streak spanning a day boundary should still trip the breaker.
+        # Daily-loss halts are session-scoped; the consecutive-loss breaker is
+        # intentionally sticky across days.
+        if self.halt_reason == "Daily loss limit exceeded":
+            self.halted = False
+            self.halt_reason = ""

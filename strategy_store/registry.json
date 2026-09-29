@@ -1,0 +1,225 @@
+{
+  "TREND_VWAP_001": {
+    "strategy_id": "TREND_VWAP",
+    "version": 1,
+    "created_at": "2026-09-29T19:06:24",
+    "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
+    "parameters": {
+      "id": "TREND_VWAP",
+      "version": 1,
+      "direction": "both",
+      "entry": {
+        "ema_align": true,
+        "vwap_side": true,
+        "adx_min": 20,
+        "rel_vol_min": 1.0,
+        "rsi_momo": {
+          "long_min": 55,
+          "short_max": 45
+        },
+        "htf_15m": true
+      },
+      "tod_allow": [
+        "mid_morning",
+        "lunch",
+        "afternoon"
+      ]
+    },
+    "config_hash": "b3bce024e6545d62",
+    "hypothesis": "Trend continuation: EMA stack + price on the right side of session VWAP + ADX + volume + RSI momentum + 15m trend agreement.",
+    "features": [
+      "ema_9/21/50",
+      "rsi_14",
+      "adx_14",
+      "session_vwap",
+      "rel_volume_tod",
+      "or_high/low",
+      "htf_trend_15m/1h",
+      "bb",
+      "atr_14"
+    ],
+    "status": "VALIDATED",
+    "status_history": [
+      {
+        "from": "EXPERIMENTAL",
+        "to": "VALIDATED",
+        "reason": "OOS net expectancy > 0 with bootstrap CI above 0; walk-forward and parameter neighbourhood stable",
+        "approved_by": null,
+        "at": "2026-09-29T19:06:44"
+      }
+    ],
+    "runs": [
+      {
+        "date": "2026-09-30",
+        "config": [
+          24,
+          3.0,
+          2.0,
+          null
+        ],
+        "train_exp": 0.294,
+        "val_exp": 0.245,
+        "test_exp": 0.2701,
+        "test_n": 129,
+        "test_win": 45.74,
+        "test_pf": 1.544,
+        "wf_pos": 1.0,
+        "neighbors": 1.0,
+        "flag": "GRID_EDGE(optimum may lie outside searched range)",
+        "notes": "OOS net expectancy > 0 with bootstrap CI above 0; walk-forward and parameter neighbourhood stable; GRID_EDGE(optimum may lie outside searched range)"
+      }
+    ]
+  },
+  "ORB_VOLUME_001": {
+    "strategy_id": "ORB_VOLUME",
+    "version": 1,
+    "created_at": "2026-09-29T19:06:45",
+    "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
+    "parameters": {
+      "id": "ORB_VOLUME",
+      "version": 1,
+      "direction": "both",
+      "entry": {
+        "orb": true,
+        "rel_vol_min": 1.5,
+        "ema_align": true,
+        "htf_15m": true
+      },
+      "min_bar_of_day": 6
+    },
+    "config_hash": "dc7b63d8781529e4",
+    "hypothesis": "Opening-range breakout with relative-volume spike, EMA alignment and 15m trend agreement.",
+    "features": [
+      "ema_9/21/50",
+      "rsi_14",
+      "adx_14",
+      "session_vwap",
+      "rel_volume_tod",
+      "or_high/low",
+      "htf_trend_15m/1h",
+      "bb",
+      "atr_14"
+    ],
+    "status": "REJECTED",
+    "status_history": [
+      {
+        "from": "EXPERIMENTAL",
+        "to": "REJECTED",
+        "reason": "no configuration profitable (net of costs) in BOTH train and validation",
+        "approved_by": null,
+        "at": "2026-09-29T19:06:46"
+      }
+    ],
+    "runs": [
+      {
+        "date": "2026-09-30",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      }
+    ]
+  },
+  "TREND_PULLBACK_001": {
+    "strategy_id": "TREND_PULLBACK",
+    "version": 1,
+    "created_at": "2026-09-29T19:06:46",
+    "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
+    "parameters": {
+      "id": "TREND_PULLBACK",
+      "version": 1,
+      "direction": "both",
+      "entry": {
+        "ema_align": true,
+        "pullback": 0.3,
+        "vwap_side": true,
+        "htf_1h": true,
+        "adx_min": 18
+      }
+    },
+    "config_hash": "a807fa7d1dbed918",
+    "hypothesis": "Buy/sell EMA21 pullbacks with rejection candle inside an aligned trend, VWAP side and 1h trend agreement.",
+    "features": [
+      "ema_9/21/50",
+      "rsi_14",
+      "adx_14",
+      "session_vwap",
+      "rel_volume_tod",
+      "or_high/low",
+      "htf_trend_15m/1h",
+      "bb",
+      "atr_14"
+    ],
+    "status": "EXPERIMENTAL",
+    "status_history": [],
+    "runs": [
+      {
+        "date": "2026-09-30",
+        "config": [
+          24,
+          3.0,
+          2.0,
+          null
+        ],
+        "train_exp": 0.285,
+        "val_exp": 0.532,
+        "test_exp": 0.2839,
+        "test_n": 67,
+        "test_win": 52.24,
+        "test_pf": 1.572,
+        "wf_pos": 0.71,
+        "neighbors": 1.0,
+        "flag": "GRID_EDGE(optimum may lie outside searched range)",
+        "notes": "OOS expectancy positive but CI/walk-forward/sensitivity not conclusive; GRID_EDGE(optimum may lie outside searched range)"
+      }
+    ]
+  },
+  "MEAN_REVERSION_001": {
+    "strategy_id": "MEAN_REVERSION",
+    "version": 1,
+    "created_at": "2026-09-29T19:06:53",
+    "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
+    "parameters": {
+      "id": "MEAN_REVERSION",
+      "version": 1,
+      "direction": "both",
+      "entry": {
+        "bb_extreme": {
+          "rsi_lo": 30,
+          "rsi_hi": 70
+        },
+        "vwap_stretch": 1.5,
+        "adx_max": 22,
+        "gap_ok": 0.006
+      }
+    },
+    "config_hash": "7c039e08e8ce3502",
+    "hypothesis": "Fade Bollinger extremes stretched from VWAP in low-ADX (range) conditions; expects reversion, fails in trend days.",
+    "features": [
+      "ema_9/21/50",
+      "rsi_14",
+      "adx_14",
+      "session_vwap",
+      "rel_volume_tod",
+      "or_high/low",
+      "htf_trend_15m/1h",
+      "bb",
+      "atr_14"
+    ],
+    "status": "REJECTED",
+    "status_history": [
+      {
+        "from": "EXPERIMENTAL",
+        "to": "REJECTED",
+        "reason": "no configuration profitable (net of costs) in BOTH train and validation",
+        "approved_by": null,
+        "at": "2026-09-29T19:06:54"
+      }
+    ],
+    "runs": [
+      {
+        "date": "2026-09-30",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      }
+    ]
+  }
+}
