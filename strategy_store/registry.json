@@ -2,7 +2,7 @@
   "TREND_VWAP_001": {
     "strategy_id": "TREND_VWAP",
     "version": 1,
-    "created_at": "2026-09-29T19:06:24",
+    "created_at": "2026-09-30T02:03:10",
     "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
     "parameters": {
       "id": "TREND_VWAP",
@@ -38,14 +38,21 @@
       "bb",
       "atr_14"
     ],
-    "status": "VALIDATED",
+    "status": "EXPERIMENTAL",
     "status_history": [
       {
         "from": "EXPERIMENTAL",
         "to": "VALIDATED",
         "reason": "OOS net expectancy > 0 with bootstrap CI above 0; walk-forward and parameter neighbourhood stable",
         "approved_by": null,
-        "at": "2026-09-29T19:06:44"
+        "at": "2026-09-30T02:03:29"
+      },
+      {
+        "from": "VALIDATED",
+        "to": "EXPERIMENTAL",
+        "reason": "Historical result was generated on synthetic 5m data; real-market validation has not been demonstrated.",
+        "approved_by": null,
+        "at": "2026-10-01T00:00:00"
       }
     ],
     "runs": [
@@ -67,13 +74,51 @@
         "neighbors": 1.0,
         "flag": "GRID_EDGE(optimum may lie outside searched range)",
         "notes": "OOS net expectancy > 0 with bootstrap CI above 0; walk-forward and parameter neighbourhood stable; GRID_EDGE(optimum may lie outside searched range)"
+      },
+      {
+        "date": "2026-10-01",
+        "config": [
+          36,
+          4.0,
+          2.5,
+          null
+        ],
+        "train_exp": 0.637,
+        "val_exp": 0.543,
+        "test_exp": -0.2618,
+        "test_n": 28,
+        "test_win": 28.57,
+        "test_pf": 0.622,
+        "wf_pos": 1.0,
+        "neighbors": 1.0,
+        "flag": "GRID_EDGE(optimum may lie outside searched range)",
+        "notes": "only 28 OOS trades (<30): inconclusive; GRID_EDGE(optimum may lie outside searched range)"
+      },
+      {
+        "date": "2026-10-01",
+        "config": [
+          36,
+          4.0,
+          2.5,
+          null
+        ],
+        "train_exp": 0.637,
+        "val_exp": 0.543,
+        "test_exp": -0.2618,
+        "test_n": 28,
+        "test_win": 28.57,
+        "test_pf": 0.622,
+        "wf_pos": 1.0,
+        "neighbors": 1.0,
+        "flag": "GRID_EDGE(optimum may lie outside searched range)",
+        "notes": "only 28 OOS trades (<30): inconclusive; GRID_EDGE(optimum may lie outside searched range)"
       }
     ]
   },
   "ORB_VOLUME_001": {
     "strategy_id": "ORB_VOLUME",
     "version": 1,
-    "created_at": "2026-09-29T19:06:45",
+    "created_at": "2026-09-30T02:03:31",
     "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
     "parameters": {
       "id": "ORB_VOLUME",
@@ -107,12 +152,22 @@
         "to": "REJECTED",
         "reason": "no configuration profitable (net of costs) in BOTH train and validation",
         "approved_by": null,
-        "at": "2026-09-29T19:06:46"
+        "at": "2026-09-30T02:03:32"
       }
     ],
     "runs": [
       {
         "date": "2026-09-30",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      },
+      {
+        "date": "2026-10-01",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      },
+      {
+        "date": "2026-10-01",
         "config": null,
         "notes": "no configuration profitable (net of costs) in BOTH train and validation"
       }
@@ -121,7 +176,7 @@
   "TREND_PULLBACK_001": {
     "strategy_id": "TREND_PULLBACK",
     "version": 1,
-    "created_at": "2026-09-29T19:06:46",
+    "created_at": "2026-09-30T02:03:32",
     "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
     "parameters": {
       "id": "TREND_PULLBACK",
@@ -169,13 +224,51 @@
         "neighbors": 1.0,
         "flag": "GRID_EDGE(optimum may lie outside searched range)",
         "notes": "OOS expectancy positive but CI/walk-forward/sensitivity not conclusive; GRID_EDGE(optimum may lie outside searched range)"
+      },
+      {
+        "date": "2026-10-01",
+        "config": [
+          36,
+          4.0,
+          1.5,
+          null
+        ],
+        "train_exp": 0.439,
+        "val_exp": 1.016,
+        "test_exp": -0.7546,
+        "test_n": 13,
+        "test_win": 15.38,
+        "test_pf": 0.228,
+        "wf_pos": 1.0,
+        "neighbors": 1.0,
+        "flag": "GRID_EDGE(optimum may lie outside searched range)",
+        "notes": "only 13 OOS trades (<30): inconclusive; GRID_EDGE(optimum may lie outside searched range)"
+      },
+      {
+        "date": "2026-10-01",
+        "config": [
+          36,
+          4.0,
+          1.5,
+          null
+        ],
+        "train_exp": 0.439,
+        "val_exp": 1.016,
+        "test_exp": -0.7546,
+        "test_n": 13,
+        "test_win": 15.38,
+        "test_pf": 0.228,
+        "wf_pos": 1.0,
+        "neighbors": 1.0,
+        "flag": "GRID_EDGE(optimum may lie outside searched range)",
+        "notes": "only 13 OOS trades (<30): inconclusive; GRID_EDGE(optimum may lie outside searched range)"
       }
     ]
   },
   "MEAN_REVERSION_001": {
     "strategy_id": "MEAN_REVERSION",
     "version": 1,
-    "created_at": "2026-09-29T19:06:53",
+    "created_at": "2026-09-30T02:03:40",
     "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
     "parameters": {
       "id": "MEAN_REVERSION",
@@ -211,7 +304,7 @@
         "to": "REJECTED",
         "reason": "no configuration profitable (net of costs) in BOTH train and validation",
         "approved_by": null,
-        "at": "2026-09-29T19:06:54"
+        "at": "2026-09-30T02:03:41"
       }
     ],
     "runs": [
@@ -219,6 +312,212 @@
         "date": "2026-09-30",
         "config": null,
         "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      },
+      {
+        "date": "2026-10-01",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      },
+      {
+        "date": "2026-10-01",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      }
+    ]
+  },
+  "PATTERN_REVERSAL_001": {
+    "strategy_id": "PATTERN_REVERSAL",
+    "version": 1,
+    "created_at": "2026-09-30T02:03:41",
+    "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
+    "parameters": {
+      "id": "PATTERN_REVERSAL",
+      "version": 1,
+      "direction": "both",
+      "entry": {
+        "pat_reversal": true,
+        "rel_vol_min": 1.0
+      },
+      "tod_allow": [
+        "mid_morning",
+        "lunch",
+        "afternoon"
+      ]
+    },
+    "config_hash": "0dea54a9a7f867a5",
+    "hypothesis": "Confirmed double top/bottom, head-and-shoulders (and inverse) and failed opening-range breaks, with normal-or-better participation.",
+    "features": [
+      "ema_9/21/50",
+      "rsi_14",
+      "adx_14",
+      "session_vwap",
+      "rel_volume_tod",
+      "or_high/low",
+      "htf_trend_15m/1h",
+      "bb",
+      "atr_14"
+    ],
+    "status": "REJECTED",
+    "status_history": [
+      {
+        "from": "EXPERIMENTAL",
+        "to": "REJECTED",
+        "reason": "no configuration profitable (net of costs) in BOTH train and validation",
+        "approved_by": null,
+        "at": "2026-09-30T02:03:46"
+      }
+    ],
+    "runs": [
+      {
+        "date": "2026-09-30",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      },
+      {
+        "date": "2026-10-01",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      },
+      {
+        "date": "2026-10-01",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      }
+    ]
+  },
+  "PATTERN_CONTINUATION_001": {
+    "strategy_id": "PATTERN_CONTINUATION",
+    "version": 1,
+    "created_at": "2026-09-30T02:03:46",
+    "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
+    "parameters": {
+      "id": "PATTERN_CONTINUATION",
+      "version": 1,
+      "direction": "both",
+      "entry": {
+        "pat_continuation": true,
+        "ema_align": true,
+        "htf_15m": true,
+        "rel_vol_min": 1.2
+      }
+    },
+    "config_hash": "3d384d74ecfc45cb",
+    "hypothesis": "Rectangle/triangle/flag/pennant breakouts in the direction of EMA alignment and 15m trend, with volume expansion.",
+    "features": [
+      "ema_9/21/50",
+      "rsi_14",
+      "adx_14",
+      "session_vwap",
+      "rel_volume_tod",
+      "or_high/low",
+      "htf_trend_15m/1h",
+      "bb",
+      "atr_14"
+    ],
+    "status": "REJECTED",
+    "status_history": [
+      {
+        "from": "EXPERIMENTAL",
+        "to": "REJECTED",
+        "reason": "no configuration profitable (net of costs) in BOTH train and validation",
+        "approved_by": null,
+        "at": "2026-09-30T02:03:47"
+      }
+    ],
+    "runs": [
+      {
+        "date": "2026-09-30",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      },
+      {
+        "date": "2026-10-01",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      },
+      {
+        "date": "2026-10-01",
+        "config": null,
+        "notes": "no configuration profitable (net of costs) in BOTH train and validation"
+      }
+    ]
+  },
+  "CONTEXT_TREND_001": {
+    "strategy_id": "CONTEXT_TREND",
+    "version": 1,
+    "created_at": "2026-09-30T02:03:47",
+    "training_period": "train 2023-01-02..2023-06-30 | validation 2023-07-03..2023-09-29 | OOS test 2023-10-02..2023-12-29  (260 sessions)",
+    "parameters": {
+      "id": "CONTEXT_TREND",
+      "version": 1,
+      "direction": "both",
+      "entry": {
+        "ema_align": true,
+        "vwap_side": true,
+        "adx_min": 20,
+        "rel_vol_min": 1.0,
+        "htf_15m": true,
+        "mkt_ctx": {
+          "index": true,
+          "sector": true,
+          "vol_max": 30
+        }
+      },
+      "tod_allow": [
+        "mid_morning",
+        "lunch",
+        "afternoon"
+      ]
+    },
+    "config_hash": "145572cc7e840564",
+    "hypothesis": "TREND_VWAP entries additionally required to agree with index and sector trend and to occur when the volatility index is not elevated. Tests whether market context adds value.",
+    "features": [
+      "ema_9/21/50",
+      "rsi_14",
+      "adx_14",
+      "session_vwap",
+      "rel_volume_tod",
+      "or_high/low",
+      "htf_trend_15m/1h",
+      "bb",
+      "atr_14"
+    ],
+    "status": "EXPERIMENTAL",
+    "status_history": [
+      {
+        "from": "EXPERIMENTAL",
+        "to": "VALIDATED",
+        "reason": "OOS net expectancy > 0 with bootstrap CI above 0; walk-forward and parameter neighbourhood stable",
+        "approved_by": null,
+        "at": "2026-09-30T02:04:05"
+      },
+      {
+        "from": "VALIDATED",
+        "to": "EXPERIMENTAL",
+        "reason": "Historical result was generated on synthetic 5m data; real-market validation has not been demonstrated.",
+        "approved_by": null,
+        "at": "2026-10-01T00:00:00"
+      }
+    ],
+    "runs": [
+      {
+        "date": "2026-09-30",
+        "config": [
+          24,
+          3.0,
+          2.0,
+          null
+        ],
+        "train_exp": 0.332,
+        "val_exp": 0.316,
+        "test_exp": 0.2727,
+        "test_n": 120,
+        "test_win": 45.83,
+        "test_pf": 1.542,
+        "wf_pos": 1.0,
+        "neighbors": 1.0,
+        "flag": "GRID_EDGE(optimum may lie outside searched range)",
+        "notes": "OOS net expectancy > 0 with bootstrap CI above 0; walk-forward and parameter neighbourhood stable; GRID_EDGE(optimum may lie outside searched range)"
       }
     ]
   }

@@ -15,22 +15,44 @@ TP, SL, COST = 0.12, 0.07, 0.0005
 
 
 def forward_outcomes(df, direction, tp=TP, sl=SL, horizon=250, cost=COST):
-    """Net return of first-touch exit for an entry at close[i]; NaN if unresolved.
-    Same-bar tp+sl touch is scored as a loss (conservative)."""
-    h, l, c = df["high"].values, df["low"].values, df["close"].values
-    n = len(df); out = np.full(n, np.nan)
+    """Net first-touch return using the same execution convention as the intraday
+    engine: signal on bar i, entry at the NEXT bar open, then evaluate exits
+    forward from that entry bar. Same-bar TP+SL is conservatively a loss.
+
+    If ``session_id`` exists, the trade cannot cross a session boundary.
+    """
+    h = df["high"].to_numpy(dtype=float)
+    l = df["low"].to_numpy(dtype=float)
+    o = df["open"].to_numpy(dtype=float)
+    n = len(df)
+    out = np.full(n, np.nan)
+    sid = df["session_id"].to_numpy() if "session_id" in df.columns else None
+
     for i in range(n - 1):
-        j1 = min(n, i + 1 + horizon)
-        hh, ll = h[i + 1:j1], l[i + 1:j1]
+        if sid is not None and sid[i + 1] != sid[i]:
+            continue
+        entry = o[i + 1]
+        if not np.isfinite(entry) or entry <= 0:
+            continue
+        last = min(n, i + 2 + horizon)
+        if sid is not None:
+            same = np.flatnonzero(sid[i + 1:last] != sid[i])
+            if len(same):
+                last = i + 1 + int(same[0])
+        hh, ll = h[i + 1:last], l[i + 1:last]
         if direction == "long":
-            tp_hit, sl_hit = hh >= c[i] * (1 + tp), ll <= c[i] * (1 - sl)
+            tp_hit = hh >= entry * (1 + tp)
+            sl_hit = ll <= entry * (1 - sl)
+            tp_ret, sl_ret = tp, -sl
         else:
-            tp_hit, sl_hit = ll <= c[i] * (1 - tp), hh >= c[i] * (1 + sl)
+            tp_hit = ll <= entry * (1 - tp)
+            sl_hit = hh >= entry * (1 + sl)
+            tp_ret, sl_ret = tp, -sl
         t = int(tp_hit.argmax()) if tp_hit.any() else None
         s = int(sl_hit.argmax()) if sl_hit.any() else None
         if t is None and s is None:
             continue
-        out[i] = (-sl - cost) if (s is not None and (t is None or s <= t)) else (tp - cost)
+        out[i] = (sl_ret - cost) if (s is not None and (t is None or s <= t)) else (tp_ret - cost)
     return out
 
 

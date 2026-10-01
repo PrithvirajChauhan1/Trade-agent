@@ -11,6 +11,14 @@ INDICATORS = [
  ("Opening range (first 6 bars)", "Early-session balance breakout level", "max/min of bars 0..5, valid from bar 6", "or_bars", "Few breakouts per day", "Gap days, low-volume opens"),
  ("HTF trend (15m/1h)", "Higher-timeframe agreement", "sign(EMA8-EMA21) of COMPLETED HTF closes", "k bars", "Stale by up to one HTF bar", "Fast reversals"),
  ("Candle patterns", "Bar-level structure", "see patterns/candles.py", "-", "Weak alone; measured, not assumed", "Most are cost-negative alone"),
+ ("WMA / HMA", "Lower-lag moving averages", "WMA linear weights; HMA = WMA(2*WMA(n/2)-WMA(n), sqrt(n))", "n", "More noise than EMA", "Chop"),
+ ("Aroon / Supertrend / Parabolic SAR", "Trend state and trailing levels", "Aroon: bars since extreme; Supertrend: ATR bands flip; SAR: accelerating stop", "n, mult, af", "Whipsaw in ranges; SAR path-dependent", "Sideways sessions"),
+ ("Ichimoku (tenkan/kijun/cloud)", "Trend + support/resistance zone", "midpoints of 9/26/52-bar ranges; cloud shifted from the PAST", "9/26/52", "Designed for daily bars; Chikou span omitted (uses future bars)", "5m noise"),
+ ("Stoch / StochRSI / Williams %R / ROC / CCI / MFI / PPO", "Momentum family", "standard definitions (see features/extra_indicators.py)", "n", "Highly correlated with RSI; redundancy is measured", "Trend days"),
+ ("Keltner, hist. vol, vol percentile, range/ATR expansion", "Volatility state", "EMA20 +/- 2 ATR; annualised stdev of log returns; ratios to rolling means", "n", "Backward-looking", "Regime breaks"),
+ ("RSI/OBV divergence, anchored VWAP (prev-session low)", "Divergence and anchored fair value", "price extreme without confirming RSI/OBV; VWAP from previous session low bar", "20 bars", "Divergence is frequent and weak alone", "Strong trends"),
+ ("Chart patterns (double top/bottom, H&S, failed break, rectangle, triangle, flag, pennant)", "Structure events", "pivots confirmed after k=2 bars; fire on neckline/boundary break; per session", "k, tolerance in ATR", "Rare; rule-based approximations", "Choppy pivots"),
+ ("Market context (index/tech/sector trend, vol index)", "Regime and relative strength", "EMA9/21 sign of supplied context series; vol index = previous session close", "-", "Requires user-supplied data", "Data misalignment"),
 ]
 
 def write_library(reg, path="docs/STRATEGY_LIBRARY.md"):

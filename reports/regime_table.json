@@ -1,20 +1,13 @@
 {
-  "high_volatility": {
-    "n": 1,
-    "win_rate_pct": 100.0,
-    "expectancy_pct": 11.95,
-    "p_vs_breakeven": 0.3691,
-    "status": "INSUFFICIENT_SAMPLE"
-  },
-  "low_volatility": {
-    "n": 1,
+  "sideways": {
+    "n": 2,
     "win_rate_pct": 0.0,
     "expectancy_pct": -7.05,
     "p_vs_breakeven": 1.0,
     "status": "INSUFFICIENT_SAMPLE"
   },
-  "sideways": {
-    "n": 4,
+  "strong_bear": {
+    "n": 1,
     "win_rate_pct": 0.0,
     "expectancy_pct": -7.05,
     "p_vs_breakeven": 1.0,
@@ -28,17 +21,17 @@
     "status": "INSUFFICIENT_SAMPLE"
   },
   "weak_bear": {
-    "n": 8,
-    "win_rate_pct": 12.5,
-    "expectancy_pct": -4.675,
-    "p_vs_breakeven": 0.9749,
+    "n": 10,
+    "win_rate_pct": 10.0,
+    "expectancy_pct": -5.15,
+    "p_vs_breakeven": 0.99,
     "status": "INSUFFICIENT_SAMPLE"
   },
   "weak_bull": {
     "n": 17,
-    "win_rate_pct": 47.1,
-    "expectancy_pct": 1.458,
-    "p_vs_breakeven": 0.2651,
+    "win_rate_pct": 52.9,
+    "expectancy_pct": 1.955,
+    "p_vs_breakeven": 0.1324,
     "status": "INSUFFICIENT_SAMPLE"
   }
 }

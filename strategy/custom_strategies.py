@@ -1,6 +1,6 @@
 """
-Custom strategies using learned parameters from 2000-2020 training.
-Exit rules: +12% profit target (hard), -7% stop loss (hard), per requirement.
+Custom strategies from the legacy daily research pipeline. These remain 1D-only until re-trained on 5m data with the intraday execution engine.
+Exit rules below are legacy daily exits; they must NOT be used as universal 5m exits.
 
 Five strategies covering different market regimes:
   1. AdaptiveEMATrend    — slope-based EMA trend with MPO + momentum confirm

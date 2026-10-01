@@ -26,7 +26,11 @@
 | 9 | Daily-study custom indicators (MPO, adaptive EMA, learned combos) were tuned on daily bars | history | Not ported; not used by 5m path |
 | 10 | No indicators warm-up guard on some legacy strategies | code inspection | Signals treat NaN as False in the new path |
 
-## Not implemented yet (deliberately deferred; see ALGORITHM_DEVELOPMENT_LOG)
-Market-wide context (SPY/QQQ/VIX/breadth/sector), ML probability models, chart-pattern engine (double top, H&S, triangles, flags), extra indicators
-(Ichimoku, SAR, Aroon, Supertrend, HMA, Keltner, MFI, CCI, StochRSI, Williams %R, anchored VWAP), multi-symbol universe, 1-minute/tick same-candle resolution,
-corporate-action adjustment, per-year/sector/symbol robustness tables (single-symbol here), pre/post-market handling.
+## Added in the second pass
+Extended indicators (`features/extra_indicators.py`), chart-pattern engine (`patterns/chart_patterns.py`), market-context layer (`features/context.py`, data must be supplied),
+ML meta-labelling (`research/ml.py`, logistic regression + gradient boosting), ablation and single/pair/full comparison (`research/ablation.py`), broader robustness
+(`research/robustness.py`: weekday, time of day, regime, year, volatility bucket, volume). All have look-ahead tests.
+
+## Still not implemented
+Multi-symbol universe and sector/symbol robustness tables, 1-minute/tick same-candle resolution, corporate-action adjustment, pre/post-market handling,
+mutual-information feature selection (Spearman IC + redundancy pairs used instead), ML expected-return regression (only win-probability meta-labelling), real context data.

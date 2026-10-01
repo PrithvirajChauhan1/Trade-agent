@@ -10,7 +10,7 @@ class ComboEnsembleStrategy(Strategy):
         self.combos = combos
         self.meta = StrategyMeta(name="learned_combo_ensemble", compatible_regimes=list(REGIMES),
                                  min_risk_reward=1.5, suitable_timeframes=["1D"],
-                                 description="OR of frozen learned indicator combinations; exits +12%/-7%.")
+                                 description="Daily OR of frozen learned indicator combinations; legacy +12%/-7% exits. Not a 5m strategy.")
 
     def evaluate(self, df, i):
         longs, shorts = [], []

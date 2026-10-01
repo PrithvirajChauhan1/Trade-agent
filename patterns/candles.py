@@ -36,9 +36,9 @@ def forward_arrays(df, H=6):
         ret[bad] = mfe[bad] = mae[bad] = np.nan
     return ret, mfe, mae
 
-def candle_stats(df, ranges, H=6, cost_bps=5.0, min_n=30):
+def candle_stats(df, ranges, H=6, cost_bps=5.0, min_n=30, flags=None):
     """ranges: {'train': (lo, hi), ...} session-index ranges. Regime/volume groupings use TRAIN only."""
-    ret, mfe, mae = forward_arrays(df, H); flags = candle_flags(df); sidx = df["session_id"].values; rows = []
+    ret, mfe, mae = forward_arrays(df, H); flags = flags or candle_flags(df); sidx = df["session_id"].values; rows = []
     groups = [("ALL", "ALL", np.ones(len(df), bool))] + \
              [("regime", r, (df.regime == r).values) for r in df.regime.unique()] + [("high_volume", "yes", df.high_volume.values), ("high_volume", "no", ~df.high_volume.values)]
     for name, (mask, direction) in flags.items():

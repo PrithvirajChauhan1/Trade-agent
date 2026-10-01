@@ -2,7 +2,7 @@
 import itertools, numpy as np, pandas as pd
 from backtest.intraday import run_intraday, CostModel, summarize
 
-HOLD = [1, 2, 3, 4, 6, 9, 12, 18, 24]; RR = [1.0, 1.5, 2.0, 2.5, 3.0]; STOP = [1.0, 1.5, 2.0]; TRAIL = [None, 1.5]
+HOLD = [1, 2, 3, 4, 6, 9, 12, 18, 24, 30, 36]; RR = [0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0]; STOP = [0.75, 1.0, 1.5, 2.0, 2.5]; TRAIL = [None, 1.5]
 
 def run_grid(df, sig, cost, symbol="SYM", strategy="S"):
     L, S, sc = sig; g = {}

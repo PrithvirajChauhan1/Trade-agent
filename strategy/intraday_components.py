@@ -24,6 +24,16 @@ def c_bb_extreme(df, p):      return _pair((df.close < df.bb_lower) & (df.rsi_14
 def c_vwap_stretch(df, p):    return _pair(df.vwap_dist_atr <= -p, df.vwap_dist_atr >= p)   # stretched away from VWAP -> fade
 def c_gap_ok(df, p):          x = df.gap_pct.abs() <= p; return _pair(x, x)
 
+def c_pat_reversal(df, p=True):     return _pair(df.pat_reversal_long, df.pat_reversal_short)
+def c_pat_continuation(df, p=True): return _pair(df.pat_cont_long, df.pat_cont_short)
+def c_mkt_ctx(df, p):
+    """p: {'index':bool,'tech':bool,'sector':bool,'vol_max':level}. Requires supplied context columns (KeyError otherwise)."""
+    L = pd.Series(True, index=df.index); S = L.copy()
+    for k in ("index", "tech", "sector"):
+        if p.get(k): L &= df[f"ctx_{k}_trend"] > 0; S &= df[f"ctx_{k}_trend"] < 0
+    if p.get("vol_max") is not None: ok = df["ctx_vol_level"] <= p["vol_max"]; L &= ok; S &= ok
+    return _pair(L, S)
+
 COMPONENTS = {k[2:]: v for k, v in globals().items() if k.startswith("c_")}
 BONUS = {"rel_vol_1.5": lambda d: d.rel_volume_tod >= 1.5, "htf_1h": lambda d: None}
 
@@ -57,4 +67,11 @@ CANDIDATES = [
   "direction": "both", "entry": {"ema_align": True, "pullback": 0.3, "vwap_side": True, "htf_1h": True, "adx_min": 18}},
  {"id": "MEAN_REVERSION", "version": 1, "hypothesis": "Fade Bollinger extremes stretched from VWAP in low-ADX (range) conditions; expects reversion, fails in trend days.",
   "direction": "both", "entry": {"bb_extreme": {"rsi_lo": 30, "rsi_hi": 70}, "vwap_stretch": 1.5, "adx_max": 22, "gap_ok": 0.006}},
+ {"id": "PATTERN_REVERSAL", "version": 1, "hypothesis": "Confirmed double top/bottom, head-and-shoulders (and inverse) and failed opening-range breaks, with normal-or-better participation.",
+  "direction": "both", "entry": {"pat_reversal": True, "rel_vol_min": 1.0}, "tod_allow": ["mid_morning", "lunch", "afternoon"]},
+ {"id": "PATTERN_CONTINUATION", "version": 1, "hypothesis": "Rectangle/triangle/flag/pennant breakouts in the direction of EMA alignment and 15m trend, with volume expansion.",
+  "direction": "both", "entry": {"pat_continuation": True, "ema_align": True, "htf_15m": True, "rel_vol_min": 1.2}},
+ {"id": "CONTEXT_TREND", "version": 1, "hypothesis": "TREND_VWAP entries additionally required to agree with index and sector trend and to occur when the volatility index is not elevated. Tests whether market context adds value.",
+  "direction": "both", "entry": {"ema_align": True, "vwap_side": True, "adx_min": 20, "rel_vol_min": 1.0, "htf_15m": True, "mkt_ctx": {"index": True, "sector": True, "vol_max": 30}},
+  "tod_allow": ["mid_morning", "lunch", "afternoon"]},
 ]

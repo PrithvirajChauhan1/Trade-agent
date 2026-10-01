@@ -10,6 +10,8 @@ def feature_table(df, ranges, H=6):
                       "gap_pct": df.gap_pct, "dist_prev_high_atr": (df.close - df.prev_high) / df.atr_14, "dist_prev_low_atr": (df.close - df.prev_low) / df.atr_14,
                       "dist_or_high_atr": (df.close - df.or_high) / df.atr_14, "htf_trend_15m": df.htf_trend_15m, "htf_trend_1h": df.htf_trend_1h,
                       "day_range_pos": (df.close - df.day_low) / (df.day_high - df.day_low).replace(0, np.nan)}, index=df.index)
+    for c in ("st_dir", "psar_dir", "ichi_pos", "aroon_osc", "stoch_k", "stochrsi", "willr_14", "roc_10", "cci_20", "mfi_14", "ppo", "kc_pos", "vol_pctile", "range_exp", "atr_exp", "vol_accel", "avwap_dist_atr", "rsi_div_bull", "rsi_div_bear", "obv_div_bull", "obv_div_bear", "ctx_index_trend", "ctx_sector_trend", "rel_strength_12", "ctx_vol_level"):
+        if c in df: X[c] = df[c]
     y = pd.Series(ret, index=df.index); sid = df.session_id.values; rows = []
     for c in X.columns:
         row = {"feature": c}

@@ -4,6 +4,6 @@
     "regime 'strong_bear' not validated out-of-sample (INSUFFICIENT_SAMPLE)"
   ],
   "regime": "strong_bear",
-  "bar_date": "2026-09-28",
+  "bar_date": "2026-10-01",
   "source": "REAL DATA: ^NSEI"
 }
